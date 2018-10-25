@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 const Search = styled.input`
   font-size: 1.5rem;
+  margin-bottom: 1em;
 `
 
 export default class SearchBar extends React.Component {

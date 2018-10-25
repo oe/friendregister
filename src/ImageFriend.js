@@ -1,6 +1,13 @@
 import React, { Fragment } from 'react'
 import Highlighter from 'react-highlight-words'
 import ImageLoader from 'react-load-image'
+import styled from 'styled-components'
+
+const Image = styled.img`
+  height: 350px;
+  display: block;
+  margin: 0 auto;
+`
 
 function Preloader (props) {
   return <h3>Loading...</h3>
@@ -26,9 +33,9 @@ export default class ImageFriend extends React.Component {
 
   render () {
     return (
-      <Fragment>
+      <article>
         <ImageLoader src={`friendimg/${this.state.name}.jpg`}>
-          <img width={100} />
+          <Image />
           <div>Error!</div>
           <Preloader />
         </ImageLoader>
@@ -38,7 +45,7 @@ export default class ImageFriend extends React.Component {
           autoEscape={true}
           textToHighlight={this.state.name}
         /></h2>
-      </Fragment>
+      </article>
     )
   }
 }

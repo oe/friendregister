@@ -13,6 +13,13 @@ const Container = styled.main`
   ${maxWidth}
 `
 
+const GridContainer = styled.div`
+  display: grid;
+  grid-template-columns: 50% 50%;
+  justify-items: center;
+  align-items: center;
+`
+
 const Heading1 = styled.h1`
   font-family: 'helvetica neue', helvetica, sans-serif;
   font-size: 2.25rem;
@@ -64,7 +71,9 @@ export default class App extends React.Component {
       <Container maxWidth="67em" m="0 auto">
         <Heading1>Friend Register</Heading1>
         <SearchBar parentMethod={this.searchInput} />
-        {friendList}
+        <GridContainer>
+          {friendList}
+        </GridContainer>
       </Container>
     )
   }
