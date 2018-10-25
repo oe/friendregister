@@ -23,6 +23,7 @@ export default class App extends React.Component {
 
     this.friendsList = friends
     this.state = {
+      input: '',
       currentFriends: []
     }
 
@@ -39,9 +40,9 @@ export default class App extends React.Component {
     const results = this.friendsList.filter(f => {
       return search(input.toLowerCase(), f.toLowerCase())
     })
-    console.log(results)
 
     this.setState({
+      input,
       currentFriends: results
     })
   }
@@ -52,7 +53,7 @@ export default class App extends React.Component {
         <Heading1>Friend Register</Heading1>
         <SearchBar parentMethod={this.searchInput} />
         {this.state.currentFriends.map(friend => {
-          return <Friend f={friend} key={friend} /> 
+          return <Friend f={friend} key={friend} input={this.state.input} /> 
         })}
       </Container>
     )
