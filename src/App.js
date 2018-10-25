@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { space, maxWidth } from 'styled-system'
 import search from 'fuzzysearch'
 import friends from './friends.json'
+import pkg from '../package.json'
 
 import Friend from './Friend'
 import SearchBar from './SearchBar.js'
@@ -11,6 +12,11 @@ import ImageFriend from './ImageFriend.js'
 const Container = styled.main`
   ${space}
   ${maxWidth}
+`
+
+const Small = styled.small`
+  font-size: 1rem;
+  margin-left: 1em;
 `
 
 const GridContainer = styled.div`
@@ -69,7 +75,7 @@ export default class App extends React.Component {
 
     return (
       <Container maxWidth="67em" m="0 auto">
-        <Heading1>Friend Register</Heading1>
+        <Heading1>Friend Register<Small>version {pkg.version}</Small></Heading1>
         <SearchBar parentMethod={this.searchInput} />
         <GridContainer>
           {friendList}
