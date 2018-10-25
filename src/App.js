@@ -1,25 +1,59 @@
 import React from 'react'
 import styled from 'styled-components'
 import { space, maxWidth } from 'styled-system'
+import search from 'fuzzysearch'
+import friends from './friends.json'
+
+import Friend from './Friend'
+import SearchBar from './SearchBar.js';
 
 const Container = styled.main`
   ${space}
   ${maxWidth}
 `
 
+const Heading1 = styled.h1`
+  font-family: 'helvetica neue', helvetica, sans-serif;
+  font-size: 2.25rem;
+`
+
 export default class App extends React.Component {
   constructor (props) {
     super(props)
 
+    this.friendsList = friends
     this.state = {
-      who: 'world'
+      currentFriends: []
     }
+
+    this.searchInput = this.searchInput.bind(this)
+  }
+
+  componentDidMount () {
+    this.setState({
+      currentFriends: friends
+    })
+  }
+
+  searchInput (input) {
+    const results = this.friendsList.filter(f => {
+      return search(input.toLowerCase(), f.toLowerCase())
+    })
+    console.log(results)
+
+    this.setState({
+      currentFriends: results
+    })
   }
 
   render () {
     return (
       <Container maxWidth="67em" m="0 auto">
-        Hello {this.state.who}!
+        <Heading1>Friend Register</Heading1>
+        <SearchBar parentMethod={this.searchInput} />
+        {this.state.currentFriends.map(friend => {
+          return <Friend f={friend} key={friend} /> 
+        })}
       </Container>
     )
   }
