@@ -5,7 +5,8 @@ import search from 'fuzzysearch'
 import friends from './friends.json'
 
 import Friend from './Friend'
-import SearchBar from './SearchBar.js';
+import SearchBar from './SearchBar.js'
+import ImageFriend from './ImageFriend.js'
 
 const Container = styled.main`
   ${space}
@@ -48,13 +49,22 @@ export default class App extends React.Component {
   }
 
   render () {
+    let friendList
+    if (this.state.currentFriends.length > 30) {
+      friendList = this.state.currentFriends.map(friend => {
+        return <Friend f={friend} key={friend} input={this.state.input} />
+      })
+    } else {
+      friendList = this.state.currentFriends.map(friend => {
+        return <ImageFriend f={friend} key={friend} input={this.state.input} />
+      })
+    }
+
     return (
       <Container maxWidth="67em" m="0 auto">
         <Heading1>Friend Register</Heading1>
         <SearchBar parentMethod={this.searchInput} />
-        {this.state.currentFriends.map(friend => {
-          return <Friend f={friend} key={friend} input={this.state.input} /> 
-        })}
+        {friendList}
       </Container>
     )
   }
