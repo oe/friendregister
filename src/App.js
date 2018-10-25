@@ -24,6 +24,7 @@ const GridContainer = styled.div`
   grid-template-columns: 50% 50%;
   justify-items: center;
   align-items: center;
+  font-family: 'helvetica neue', helvetica, sans-serif;
 
   @media screen and (max-width: 60em) {
     grid-template-columns: 100%;

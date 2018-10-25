@@ -9,6 +9,10 @@ const Image = styled.img`
   margin: 0 auto;
 `
 
+const Text = styled.h2`
+  text-align: center;
+`
+
 function Preloader (props) {
   return <h3>Loading...</h3>
 }
@@ -39,12 +43,12 @@ export default class ImageFriend extends React.Component {
           <div>Image not found!</div>
           <Preloader />
         </ImageLoader>
-        <h2><Highlighter
+        <Text><Highlighter
           highlightClassName="hl"
           searchWords={this.state.input.split(' ')}
           autoEscape={true}
           textToHighlight={this.state.name}
-        /></h2>
+        /></Text>
       </article>
     )
   }
