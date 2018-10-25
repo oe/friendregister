@@ -36,7 +36,7 @@ export default class ImageFriend extends React.Component {
       <article>
         <ImageLoader src={`friendimg/${this.state.name}.jpg`}>
           <Image />
-          <div>Error!</div>
+          <div>Image not found!</div>
           <Preloader />
         </ImageLoader>
         <h2><Highlighter
