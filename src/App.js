@@ -1,6 +1,13 @@
 import React from 'react'
+import styled from 'styled-components'
+import { space, maxWidth } from 'styled-system'
 
-class App extends React.Component {
+const Container = styled.main`
+  ${space}
+  ${maxWidth}
+`
+
+export default class App extends React.Component {
   constructor (props) {
     super(props)
 
@@ -11,7 +18,9 @@ class App extends React.Component {
 
   render () {
     return (
-      <h1>Hello {this.state.who}!</h1>
+      <Container maxWidth="67em" m="0 auto">
+        Hello {this.state.who}!
+      </Container>
     )
   }
 }
