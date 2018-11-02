@@ -9,27 +9,17 @@ const Container = styled.section`
   font-family: 'helvetica neue', helvetica, sans-serif;
 `
 
-export default class RouteClan extends React.Component {
-  constructor (props) {
-    super(props)
+export default function RouteClan ({ match }) {
+  const friends = clans[match.params.name].items
 
-    this.state = {
-      params: props.match.params
-    }
-  }
-
-  render () {
-    const friends = clans[this.state.params.name]
-
-    return (
-      <Container>
-        <h1>{this.state.params.name}</h1>
-        <GridContainer>
-          {friends.map(f => {
-            return <ImageFriend f={f} key={f} input="" />
-          })}
-        </GridContainer>
-      </Container>
-    )
-  }
+  return (
+    <Container>
+      <h1>{match.params.name}</h1>
+      <GridContainer>
+        {friends.map(f => {
+          return <ImageFriend f={f} key={f} input="" />
+        })}
+      </GridContainer>
+    </Container>
+  )
 }

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import Highlighter from 'react-highlight-words'
 import ImageLoader from 'react-load-image'
 import styled from 'styled-components'
