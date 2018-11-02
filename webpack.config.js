@@ -19,7 +19,7 @@ module.exports = {
       template: 'template.html'
     }),
     new CleanWebpackPlugin('dist', {
-      exclude: ['clanimg', 'friendimg']
+      exclude: ['clanimg', 'friendimg', '_redirects']
     }),
     new webpack.HashedModuleIdsPlugin()
   ],
