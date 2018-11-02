@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { space, maxWidth } from 'styled-system'
 import { BrowserRouter, Route, Link } from 'react-router-dom'
 import pkg from '../package.json'
 import clans from './clans.json'
@@ -9,8 +8,8 @@ import RouteList from './routes/RouteList'
 import RouteClan from './routes/RouteClan'
 
 const Container = styled.main`
-  ${space}
-  ${maxWidth}
+  max-width: 67em;
+  margin: 0 auto;
 `
 
 const Small = styled.small`
@@ -67,7 +66,7 @@ export default class App extends React.Component {
 
     return (
       <BrowserRouter>
-        <Container maxWidth="67em" m="0 auto">
+        <Container>
           <HeadingLink to="/">Friend Register<Small>version {pkg.version}</Small></HeadingLink>
           <ClanContainer>
             {clanNames.map(clan => {
