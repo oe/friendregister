@@ -11,6 +11,7 @@ const Container = styled.section`
 
 export default function RouteClan ({ match }) {
   const friends = clans[match.params.name].items
+  document.title = `${match.params.name} - Friend Register`
 
   return (
     <Container>

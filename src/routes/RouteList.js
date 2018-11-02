@@ -60,6 +60,8 @@ export default class RouteList extends React.Component {
       })
     }
 
+    document.title = 'Friend Register'
+
     return (
       <Fragment>
         <SearchBar parentMethod={this.searchInput} />
