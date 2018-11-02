@@ -1,13 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 import { space, maxWidth } from 'styled-system'
-import search from 'fuzzysearch'
-import friends from './friends.json'
+import { BrowserRouter, Route, Link } from 'react-router-dom'
 import pkg from '../package.json'
+import clans from './clans.json'
 
-import Friend from './Friend'
-import SearchBar from './SearchBar.js'
-import ImageFriend from './ImageFriend.js'
+import RouteList from './routes/RouteList'
+import RouteClan from './routes/RouteClan'
 
 const Container = styled.main`
   ${space}
@@ -19,73 +18,67 @@ const Small = styled.small`
   margin-left: 1em;
 `
 
-const GridContainer = styled.div`
-  display: grid;
-  grid-template-columns: 50% 50%;
-  justify-items: center;
-  align-items: center;
+const HeadingLink = styled(Link)`
   font-family: 'helvetica neue', helvetica, sans-serif;
+  font-size: 2.25rem;
+  color: #001f3f;
+  text-decoration: none;
+  transition: .25s color;
 
-  @media screen and (max-width: 60em) {
-    grid-template-columns: 100%;
+  :hover {
+    color: #0074D9;
   }
 `
 
-const Heading1 = styled.h1`
+const ClanContainer = styled.div`
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(4, [col] auto);
+  justify-items: center;
+  column-gap: 3rem;
+  align-items: center;
+`
+
+const ClanLink = styled(Link)`
+  margin: .5rem .5rem;
+  text-decoration: none;
   font-family: 'helvetica neue', helvetica, sans-serif;
-  font-size: 2.25rem;
+  background: ${props => props.bg || "black"};
+  font-size: .875rem;
+  color: ${props => props.fg || "white"};
+  padding: .5rem 1rem;
+  width: 100%;
+  border-radius: .125rem;
+  text-align: center; 
+  transition: .25s opacity;
+
+  :hover {
+    opacity: 0.65;
+  }
 `
 
 export default class App extends React.Component {
   constructor (props) {
     super(props)
-
-    this.friendsList = friends
-    this.state = {
-      input: '',
-      currentFriends: []
-    }
-
-    this.searchInput = this.searchInput.bind(this)
-  }
-
-  componentDidMount () {
-    this.setState({
-      currentFriends: friends
-    })
-  }
-
-  searchInput (input) {
-    const results = this.friendsList.filter(f => {
-      return search(input.toLowerCase(), f.toLowerCase())
-    })
-
-    this.setState({
-      input,
-      currentFriends: results
-    })
   }
 
   render () {
-    let friendList
-    if (this.state.currentFriends.length > 30) {
-      friendList = this.state.currentFriends.map(friend => {
-        return <Friend f={friend} key={friend} input={this.state.input} />
-      })
-    } else {
-      friendList = this.state.currentFriends.map(friend => {
-        return <ImageFriend f={friend} key={friend} input={this.state.input} />
-      })
-    }
+    const clanNames = Object.keys(clans)
 
     return (
-      <Container maxWidth="67em" m="0 auto">
-        <Heading1>Friend Register<Small>version {pkg.version}</Small></Heading1>
-        <SearchBar parentMethod={this.searchInput} />
-        <GridContainer>
-          {friendList}
-        </GridContainer>
-      </Container>
+      <BrowserRouter>
+        <Container maxWidth="67em" m="0 auto">
+          <HeadingLink to="/">Friend Register<Small>version {pkg.version}</Small></HeadingLink>
+          <ClanContainer>
+            {clanNames.map(clan => {
+              const item = clans[clan]
+              return <ClanLink fg={item.fg} bg={item.bg} key={clan} to={`/clan/${clan}`}>{clan}</ClanLink>
+            })}
+          </ClanContainer>
+          <Route exact path="/" component={RouteList} />
+          <Route path="/clan/:name" component={RouteClan} />
+        </Container>
+      </BrowserRouter>
     )
   }
 }

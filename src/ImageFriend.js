@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import Highlighter from 'react-highlight-words'
 import ImageLoader from 'react-load-image'
 import styled from 'styled-components'
@@ -38,7 +38,7 @@ export default class ImageFriend extends React.Component {
   render () {
     return (
       <article>
-        <ImageLoader src={`friendimg/${this.state.name}.jpg`}>
+        <ImageLoader src={`/friendimg/${this.state.name}.jpg`}>
           <Image />
           <div>Image not found!</div>
           <Preloader />
