@@ -5,6 +5,7 @@ import { BrowserRouter, Route } from 'react-router-dom'
 import pkg from '../package.json'
 
 import RouteList from './routes/RouteList'
+import RouteClan from './routes/RouteClan'
 
 const Container = styled.main`
   ${space}
@@ -32,6 +33,7 @@ export default class App extends React.Component {
         <Container maxWidth="67em" m="0 auto">
           <Heading1>Friend Register<Small>version {pkg.version}</Small></Heading1>
           <Route exact path="/" component={RouteList} />
+          <Route path="/clan/:name" component={RouteClan} />
         </Container>
       </BrowserRouter>
     )

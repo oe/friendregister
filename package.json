@@ -1,7 +1,7 @@
 {
   "version": "0.1.3",
   "scripts": {
-    "start": "webpack-dev-server --open",
+    "start": "webpack-dev-server -d --open",
     "prod": "webpack --mode=production"
   },
   "browserslist": "last 1 versions",

@@ -6,7 +6,7 @@ import ImageFriend from '../ImageFriend'
 import styled from 'styled-components'
 import search from 'fuzzysearch'
 
-const GridContainer = styled.div`
+export const GridContainer = styled.div`
   display: grid;
   grid-template-columns: 50% 50%;
   justify-items: center;
