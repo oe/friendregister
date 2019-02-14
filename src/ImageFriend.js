@@ -22,7 +22,7 @@ export default class ImageFriend extends React.Component {
     super(props)
 
     this.state = {
-      name: props.f,
+      name: props.f.eng,
       input: props.input
     }
   }
@@ -38,7 +38,7 @@ export default class ImageFriend extends React.Component {
   render () {
     return (
       <article>
-        <ImageLoader src={`/friendimg/${this.state.name}.jpg`}>
+        <ImageLoader src={`/friendimg/${this.state.name}.png`}>
           <Image />
           <div>Image not found!</div>
           <Preloader />

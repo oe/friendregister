@@ -39,7 +39,7 @@ export default class RouteList extends React.Component {
 
   searchInput (input) {
     const results = this.friendsList.filter(f => {
-      return search(input.toLowerCase(), f.toLowerCase())
+      return search(input.toLowerCase(), f.eng.toLowerCase())
     })
 
     this.setState({
@@ -52,11 +52,11 @@ export default class RouteList extends React.Component {
     let friendList
     if (this.state.currentFriends.length > 30) {
       friendList = this.state.currentFriends.map(friend => {
-        return <Friend f={friend} key={friend} input={this.state.input} />
+        return <Friend f={friend} key={friend.eng} input={this.state.input} />
       })
     } else {
       friendList = this.state.currentFriends.map(friend => {
-        return <ImageFriend f={friend} key={friend} input={this.state.input} />
+        return <ImageFriend f={friend} key={friend.eng} input={this.state.input} />
       })
     }
 

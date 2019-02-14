@@ -6,7 +6,7 @@ export default class Friend extends React.Component {
     super(props)
 
     this.state = {
-      name: props.f,
+      name: props.f.eng,
       input: props.input
     }
   }

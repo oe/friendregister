@@ -18,7 +18,8 @@ export default function RouteClan ({ match }) {
       <h1>{match.params.name}</h1>
       <GridContainer>
         {friends.map(f => {
-          return <ImageFriend f={f} key={f} input="" />
+          let fr = {eng: f}
+          return <ImageFriend f={fr} key={f} input="" />
         })}
       </GridContainer>
     </Container>
